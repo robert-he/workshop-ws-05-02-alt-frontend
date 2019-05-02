@@ -1,3 +1,32 @@
+<template>
+  <div  class="ToDoItem">
+    <p class="ToDoItem-Text" v-html="todo.text">{{todo.text}}</p>
+    <div class="ToDoItem-Delete" @click="deleteItem(todo)">-
+	</div>
+
+<tinymce id="d1"
+           :other_options="tinyOptions"
+           v-model="todo"
+           v-on:keyup.enter="createNewToDoItem"
+></tinymce>
+  <div  class="ToDo-Add"  @click="createNewToDoItem()">+</div>
+  </div>
+
+</template>
+
+<script>
+  export  default  {
+  name: "to-do-item",
+    props: ['todo'],
+    methods: {
+  deleteItem(todo) {
+    this.$emit('delete', todo)
+  }
+}
+  }
+</script>
+
+
 <style>
     .ToDoItem {
         display: flex;
